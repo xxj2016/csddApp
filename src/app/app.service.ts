@@ -39,7 +39,7 @@ export class AppService {
             for (var key in params) {
                 if (params.hasOwnProperty(key)) {
                     var value = params[key];
-                    str += encodeURLComponent(key) + '=' + encodeURIComponent(value) + '&';
+                    str += encodeURIComponent(key) + '=' + encodeURIComponent(value) + '&';
                 }
             }
             str = '?' + str.substring(0, str.length -1);
