@@ -66,5 +66,10 @@ export class HomePage {
     console.log('go details...');
   }
 
+  // 商品详情
+  goProductList(item) {
+    console.log('go productList...');
+  }
+
 
 }
