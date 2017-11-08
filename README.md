@@ -67,3 +67,38 @@ http://reactnative.cn/docs/0.47/getting-started.html
 * npm install
 2. $ cp src/config/_config.ts src/config/config.ts
 * ionic serve 或 ionic serve --address 192.168.10.113 --port 6335
+
+
+----------------------------------------------------------------
+## 关于Angular-cli升级
+
+先卸载旧的
+```bash
+* npm uninstall -g @angular/cli
+```
+清除缓存
+```bash
+* npm cache clean
+if npm version is > 5 then use `npm cache verify` to avoid errors (or to avoid using --force)
+```
+
+* npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/ 
+
+全局安装最新angular-cli
+```bash
+* npm install -g @angular/cli@latest --loglevel warn --unsafe-perm=true
+```
+删除项目下的文件
+```bash
+* rm -rf node_modules dist
+```
+
+安装到项目本地
+```bash
+* npm install --save-dev @angular/cli@latest
+```
+最后
+```bash
+* npm install
+```
+----------------------------------------------------------------
