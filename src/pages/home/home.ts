@@ -63,7 +63,7 @@ export class HomePage {
 
   // 商品详情
   goDetails(item) {
-    console.debug('go details...');
+    console.log('go details...');
   }
 
 
