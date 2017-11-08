@@ -25,4 +25,38 @@ page-home {
             color: white;
         }
     }
+
+    .categories {
+        .title {
+            font-family: "黑体-简";
+            font-weight: 300;
+            color: #808080;
+            font-size: 80%;
+            display: block;
+            margin-top: 5px;
+        }
+        ion-row {
+            background-color: #efefef;
+            padding: 0px;
+        }
+        ion-col {
+            background-color: white;
+        }
+    }
+
+    .icon {
+        border-radius: 100px;
+        color: white;
+        background-color: #f8285c;
+        font-size: 36px !important;
+        padding: 5px;
+    }
+    .t-header {
+        font-family: "黑体-简";
+        font-weight: 300;
+        color: #f8285c;
+        border-left: 2px solid #f8285c;
+        border-top: 5px solid #efefef;
+        background: white;
+    }
 }

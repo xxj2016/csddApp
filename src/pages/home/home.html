@@ -20,5 +20,16 @@
     </ion-slide>
   </ion-slides>
 
+  <div class="categories">
+	  <ion-grid>
+		  <ion-row wrap>
+			  <ion-col text-center tappable col-3 *ngFor="let c of categories" (click)="goProductList(c)">
+				  <i class="iconfont {{c.Icon}} icon"></i>
+				  <span class="title">{{c.FavoritesTitle}}</span>
+			  </ion-col>
+		  </ion-row>
+	  </ion-grid>
+  </div>
+
   <ion-item-divider class="t-header" color="light">年会礼服2017年新款</ion-item-divider>
 </ion-content>
