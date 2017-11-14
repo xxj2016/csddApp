@@ -68,7 +68,7 @@ export class HomePage {
 
   // 商品详情
   goProductList(item) {
-    console.log('go productList...');
+     this.navCtrl.push('ProductListPage', { item: item });
   }
 
 
