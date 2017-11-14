@@ -39,7 +39,6 @@ export class HomePage {
     }
 
     this.appService.httpGet(AppGlobal.API.getProducts, params, rs => {
-      console.log(rs);
       this.slides = rs.data;
       this.spinner1 = false;
     })
@@ -48,7 +47,6 @@ export class HomePage {
   // 获取分类
   getCategories() {
     this.appService.httpGet(AppGlobal.API.getCategories, { appTag: 'dress' }, rs => {
-      console.log(rs);
       this.categories = rs.data;
     })
   }
@@ -56,7 +54,6 @@ export class HomePage {
   // 获取首页推荐列表
   getProducts() {
     this.appService.httpGet(AppGlobal.API.getProducts, this.params, rs => {
-      console.log(rs);
       this.products = rs.data;
     })
   }
