@@ -23,8 +23,8 @@ export class IonProductsComponent {
   }
 
   goDetails(item) {
-    console.log('go details ...');
-    
+    // console.log('go details ...');
+    this.navCtrl.push("ProductDetailsPage", { item: item });
   }
 
 }
