@@ -4,6 +4,14 @@
   </ion-navbar>
 </ion-header>
 <ion-content fullscreen>
+  <section>
+    <ion-scroll class="section-content" scrollX="true" scrollY="false">
+      <div class="item" *ngFor="let i = index; let c of categories">
+        {{c.FavoritesTitle}}
+      </div>
+    </ion-scroll> 
+  </section>
+
   <ion-grid no-padding>
     <ion-row>
       <ion-col col-3 class="menus">

@@ -30,7 +30,7 @@ export class ContactPage {
 
   ionViewDidLoad() {
     this.getCategories();
-    this.addScrollEventListener();
+    // this.addScrollEventListener();
   }
 
   addScrollEventListener() {

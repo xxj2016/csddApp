@@ -48,4 +48,20 @@ page-contact {
       }
     }
   }
+
+  section {
+    .section-content{
+      height: 32px;
+      white-space: nowrap;
+      background-color: #f3bcca;
+      color: white;width: 100%;
+    }
+
+    .item {
+      display: inline-block;
+      padding: 4px;
+      text-align: center;
+      width: 50px;
+    }
+  }
 }
