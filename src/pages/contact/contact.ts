@@ -12,6 +12,7 @@ export class ContactPage {
   @ViewChild('scroll') scrollElement: any;
   @ViewChild('spinner') spinnerElement: any;
 
+  index = 0;
   categories: Array<any> = [];
   selectedMenuTarget: any;
   products: Array<any> = [];
@@ -76,7 +77,7 @@ export class ContactPage {
 
     // 将本次选中的菜单记录
     this.selectedMenuTarget = event.currentTarget;
-
+    
     this.hasmore = true;
 
     this.params.favoritesId = c.FavoritesId;

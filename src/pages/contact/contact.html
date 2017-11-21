@@ -4,16 +4,18 @@
   </ion-navbar>
 </ion-header>
 <ion-content fullscreen>
-  <section>
+  <!-- 顶部滑动菜单栏 -->
+  <!-- <section>
     <ion-scroll class="section-content" scrollX="true" scrollY="false">
-      <div class="item" *ngFor="let i = index; let c of categories">
+      <div class="item" *ngFor="let i = index; let c of categories" [ngClass]="{'active': index === i}" (click)="index = i;itemClick(c,$event)">
         {{c.FavoritesTitle}}
       </div>
     </ion-scroll> 
-  </section>
+  </section> -->
 
   <ion-grid no-padding>
     <ion-row>
+      <!-- 侧边滑动菜单栏 -->
       <ion-col col-3 class="menus">
         <ion-scroll scrollY="true" style="height:100%">
           <ion-list no-lines>
