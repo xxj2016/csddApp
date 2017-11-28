@@ -41,7 +41,7 @@ export class ProductListPage {
   }
 
   getFavoritesItems() {
-    this.appService.httpGet(AppGlobal.API.getProducts, this.params, d => {
+    this.appService.httpGet(AppGlobal.domain, AppGlobal.API.getProducts, this.params, d => {
       this.products = d.data;
       this.params.pageNo += 1;
       this.spinner1 = false;
@@ -53,7 +53,7 @@ export class ProductListPage {
       infiniteScroll.complete();
       return;
     }
-    this.appService.httpGet(AppGlobal.API.getProducts, this.params, d => {
+    this.appService.httpGet(AppGlobal.domain, AppGlobal.API.getProducts, this.params, d => {
       if (d.data.length > 0) {
         this.products = this.products.concat(d.data);
         this.params.pageNo += 1;
