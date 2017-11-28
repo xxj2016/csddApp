@@ -1,11 +1,14 @@
 import { IonicModule } from 'ionic-angular';
 import { NgModule } from '@angular/core';
 import { IonProductsComponent } from './ion-products/ion-products';
+import { IonRadiosComponent } from './ion-radios/ion-radios';
 @NgModule({
-	declarations: [IonProductsComponent],
+	declarations: [IonProductsComponent,
+    IonRadiosComponent],
 	imports: [
 		IonicModule
 	],
-	exports: [IonProductsComponent]
+	exports: [IonProductsComponent,
+    IonRadiosComponent]
 })
 export class ComponentsModule {}
