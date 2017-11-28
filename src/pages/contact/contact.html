@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar style="opacity: 0.8" no-border-bottom color="primary">
-    <ion-title>优惠精选</ion-title>
+    <ion-title>听听</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content fullscreen>
@@ -20,13 +20,14 @@
         <ion-scroll scrollY="true" style="height:100%">
           <ion-list no-lines>
             <ion-item button class="menuItem" *ngFor="let c of categories;let i=index" [ngClass]="{'active': i==0}" text-center (click)="itemClick(c,$event)">
-              {{c.FavoritesTitle}} </ion-item>
+              {{c.categoryName}} </ion-item>
           </ion-list>
         </ion-scroll>
       </ion-col>
       <ion-col class="items">
         <ion-scroll scrollY="true" #scroll style="height:100%">
-          <ion-products [products]="products"></ion-products>
+          <!-- <ion-products [products]="products"></ion-products> -->
+          <ion-radios [radios]="radios"></ion-radios>
           <ion-row>
             <ion-col class="nodata" text-center *ngIf="!hasmore">
               没有商品啦 ♪(^∇^*)

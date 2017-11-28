@@ -16,6 +16,7 @@ export class ContactPage {
   categories: Array<any> = [];
   selectedMenuTarget: any;
   products: Array<any> = [];
+  radios: Array<any> = [];
   hasmore = true;
 
   islock = false;
@@ -25,12 +26,23 @@ export class ContactPage {
     pageNo: 1
   }
 
+  paramsRadio = {
+    cid: 1339,
+    pagesize: 20,
+    pagenum: 1,
+    rtype: 20000,
+    sorttype: 'HOT_RANK_DESC',
+    callback: 'JSONP_CALLBACK'
+  }
+
   constructor(public navCtrl: NavController, public appService: AppService) {
 
   }
 
   ionViewDidLoad() {
-    this.getCategories();
+    this.getRadioCategoryList();
+    // this.getRadioByCategoryId();
+    // this.getCategories();
     // this.addScrollEventListener();
   }
 
@@ -51,7 +63,7 @@ export class ContactPage {
 
   // 获取左侧菜单
   getCategories() {
-    this.appService.httpGet(AppGlobal.API.getCategories, {appTag: 'dress'}, rs => {
+    this.appService.httpGet(AppGlobal.domain, AppGlobal.API.getCategories, {appTag: 'dress'}, rs => {
       console.log(rs);
       this.categories = rs.data;
       // 默认获取第一个分类的商品列表
@@ -80,19 +92,54 @@ export class ContactPage {
     
     this.hasmore = true;
 
-    this.params.favoritesId = c.FavoritesId;
-    this.params.pageNo = 1;
+    // 衣服商品的数据
+    // this.params.favoritesId = c.FavoritesId;
+    // this.params.pageNo = 1;
 
-    this.getProducts();
+    // this.getProducts();
+
+    // 电台数据
+    this.paramsRadio.cid = c.categoryId;
+    this.paramsRadio.pagenum = 1;
+
+    this.getRadioByCategoryId();
   }
 
+  // 加载衣服数据
   getProducts() {
-    this.appService.httpGet(AppGlobal.API.getProducts, this.params, rs => {
+    this.appService.httpGet(AppGlobal.domain, AppGlobal.API.getProducts, this.params, rs => {
       this.products = rs.data;
       this.params.pageNo += 1;
     })
   }
 
+  // 加载电台分类
+  getRadioCategoryList() {
+    this.appService.httpGetJsonp(AppGlobal.domainRadio, AppGlobal.API.getRadioCategoryList, {callback: 'JSONP_CALLBACK'}, rs => {
+      console.log(rs);
+      if (rs.message === 'success') {
+        this.categories = rs.result.dataList;
+      }
+      this.categories.shift();
+      this.paramsRadio.cid = this.categories[0].categoryId;
+      console.log(this.categories);
+
+      this.getRadioByCategoryId();
+    })
+  }
+
+  // 加载电台指定分类数据
+  getRadioByCategoryId() {
+    this.appService.httpGetJsonp(AppGlobal.domainRadio,AppGlobal.API.getRadioByCategoryId, this.paramsRadio, rs => {
+      console.log(rs);
+      this.radios = rs.result.dataList;
+      this.paramsRadio.pagenum += 1;
+      console.log(this.radios);
+      
+    })
+  }
+
+  // 滑动加载
   doInfinite() {
     if (this.islock) {
       return;
@@ -102,7 +149,7 @@ export class ContactPage {
     }
 
     this.islock = true;
-    this.appService.httpGet(AppGlobal.API.getProducts, this.params, d => {
+    this.appService.httpGet(AppGlobal.domain, AppGlobal.API.getProducts, this.params, d => {
       this.islock = false;
       if(d.data.length > 0) {
         this.products = this.products.concat(d.data);

@@ -42,9 +42,12 @@ page-contact {
     }
     ion-item {
       background: #efefef;
+      padding-left: 0;
+      
       ion-label {
         font-family: "黑体";
         font-size: 90%;
+        margin: 11px 0;
       }
     }
   }
