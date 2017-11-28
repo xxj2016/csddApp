@@ -1,6 +1,6 @@
 import { LoadingController, AlertController, ToastController } from "ionic-angular";
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
+import { Http, Jsonp } from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -14,12 +14,19 @@ export class AppGlobal {
 
     //接口基地址
     static domain = "https://tlimama.tongedev.cn";
+    static domainRadio = "http://www.tingban.cn/webapi";
 
     //接口地址
     static API: any = {
+        // 衣服
         getCategories: '/api/ionic3/getCategories',
         getProducts: '/api/ionic3/getProducts',
-        getDetails: '/api/ionic3/getDetails'
+        getDetails: '/api/ionic3/getDetails',
+        
+        // 电台
+        getHotRadio: '/labelinfo/get',
+        getRadioCategoryList: '/category/list',
+        getRadioByCategoryId: '/resource/search'
     };
 }
 
@@ -27,6 +34,7 @@ export class AppGlobal {
 export class AppService {
     constructor(
         public http: Http,
+        public jsonp: Jsonp,
         public loadingCtrl: LoadingController,
         public alertController: AlertController,
         public toastController: ToastController,
@@ -47,12 +55,34 @@ export class AppService {
         return str;
     }
 
-    httpGet(url, params, callback, loader: boolean = false) {
+    httpGet(domain, url, params, callback, loader: boolean = false) {
         let loading = this.loadingCtrl.create({});
         if (loader) {
             loading.present();
         }
-        this.http.get(AppGlobal.domain + url + this.encode(params))
+        this.http.get(domain + url + this.encode(params))
+            .toPromise()
+            .then(res => {
+                var d = res.json();
+                if (loader) {
+                    loading.dismiss();
+                }
+                callback(d == null ? "[]" : d);
+            })
+            .catch(error => {
+                if (loader) {
+                    loading.dismiss();
+                }
+                this.handleError(error);
+            });
+    }
+
+    httpGetJsonp(domain, url, params, callback, loader: boolean = false) {
+        let loading = this.loadingCtrl.create({});
+        if (loader) {
+            loading.present();
+        }
+        this.jsonp.get(domain + url + this.encode(params))
             .toPromise()
             .then(res => {
                 var d = res.json();

@@ -1,4 +1,4 @@
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { AppService } from "./app.service";
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     HttpModule,
+    JsonpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
