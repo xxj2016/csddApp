@@ -43,7 +43,7 @@ export class ContactPage {
     this.getRadioCategoryList();
     // this.getRadioByCategoryId();
     // this.getCategories();
-    // this.addScrollEventListener();
+    this.addScrollEventListener();
   }
 
   addScrollEventListener() {
@@ -149,11 +149,11 @@ export class ContactPage {
     }
 
     this.islock = true;
-    this.appService.httpGet(AppGlobal.domain, AppGlobal.API.getProducts, this.params, d => {
+    this.appService.httpGetJsonp(AppGlobal.domainRadio,AppGlobal.API.getRadioByCategoryId, this.paramsRadio, d => {
       this.islock = false;
-      if(d.data.length > 0) {
-        this.products = this.products.concat(d.data);
-        this.params.pageNo += 1;
+      if(d.result.dataList.length > 0) {
+        this.radios = this.radios.concat(d.result.dataList);
+        this.paramsRadio.pagenum += 1;
       }else{
         this.hasmore = false;
         console.log("没有数据了");
